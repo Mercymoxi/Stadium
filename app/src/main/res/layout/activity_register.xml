@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/login_layout"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:gravity="center">
+
+
+        <EditText
+            android:id="@+id/username_et2"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="5dp"
+            android:maxLength="20"
+            android:hint="请输入你想要注册的账号"/>
+
+
+        <EditText
+            android:id="@+id/password_et2"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="50dp"
+            android:inputType="textPassword"
+            android:maxLength="20"
+            android:hint="请输入你的账号密码" />
+
+        <EditText
+            android:id="@+id/confirmpassword_et2"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="95dp"
+            android:inputType="textPassword"
+            android:maxLength="20"
+            android:hint="确认你的账号密码" />
+
+        <Button
+            android:id="@+id/register_button2"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="150dp"
+            android:text="注册"/>
+
+
+
+
+    </RelativeLayout>
+
+</RelativeLayout>
