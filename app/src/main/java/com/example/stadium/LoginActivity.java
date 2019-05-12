@@ -8,24 +8,37 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.stadium.utils.MD5Utils;
+
+import org.litepal.LitePal;
+import org.litepal.crud.DataSupport;
+
+import java.io.IOException;
+import java.util.List;
+
 public class LoginActivity extends AppCompatActivity {
 
-    private Button login_button,register_button,forgetpassword;             //获取登陆按钮
-    private String username,password,sppassword;   //获取的用户名，密码，加密密码
+    private Button login_button,register_button,forgetpassword;//获取登陆按钮
+    private CheckBox ismanager;
+    private String username,password,sppassword,acc,ps;   //获取的用户名，密码，加密密码
     private EditText username_et,password_et;    //编辑框
+    private int i;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+//        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        LitePal.getDatabase();
         init();
     }
 
     private void init(){
+        ismanager = findViewById(R.id.ismanager);
         register_button = findViewById(R.id.register_button1);
         login_button = findViewById(R.id.login_button1);
         forgetpassword =  findViewById(R.id.forgetpassword_button1);
@@ -48,24 +61,53 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //开始登陆，获取用户和密码
-                username=username_et.getText().toString().trim();
-                password=password_et.getText().toString().trim();
-                String md5Paw = MD5Utils.md5(password); //对当前用户输入的密码进行MD5加密再进行对比判断是否一致
-                sppassword = ReadPassWord(username);
-                if (TextUtils.isEmpty(username)){
+                username = username_et.getText().toString().trim();
+                password = password_et.getText().toString().trim();
+//                String md5Paw = MD5Utils.md5(password); //对当前用户输入的密码进行MD5加密再进行对比判断是否一致
+//                sppassword = ReadPassWord(username);
+                if (ismanager.isChecked()){
+                    try{
+                        List<Manager> customList = DataSupport.select("manager_ps").where("manager_account = ?", username).find(Manager.class);
+                        ps = customList.get(0).getManager_ps();
+                    }catch (Exception e){
+                        e.getMessage();
+                    }
+                }else{
+                    try{
+                        List<Custom> customList = DataSupport.select("password").where("account = ?", username).find(Custom.class);
+                        ps = customList.get(0).getPassword();
+                    }catch (Exception e){
+                        e.getMessage();
+                    }
+                }
+                if (TextUtils.isEmpty(username))
+                {
                     Toast.makeText(LoginActivity.this, "请输入用户名", Toast.LENGTH_SHORT).show();
-                }else if (TextUtils.isEmpty(password)){
+                }
+                else if (TextUtils.isEmpty(password))
+                {
                     Toast.makeText(LoginActivity.this, "请输入密码", Toast.LENGTH_SHORT).show();
-                }else if (md5Paw.equals(sppassword)){
+//                }else if (md5Paw.equals(sppassword)){
+                }
+                else if (password.equals(ps)) {
                     Toast.makeText(LoginActivity.this, "登陆成功", Toast.LENGTH_SHORT).show();
-                    saveLoginStatus(true,username); //保存登陆状态，再节目保存登陆的用户名，定义个方法 saveLoginStatus boolean状态，username用户名
-                    Intent data = new Intent();    //登陆成功后进入主页
-                    data.putExtra("isLogin",true);
-                    setResult(RESULT_OK,data); //表示此页面下的内容操作成功将data返回到上一页面，如果时用back返回过去的则不存在用setResult传递data值
+//                    saveLoginStatus(true,username); //保存登陆状态，再节目保存登陆的用户名，定义个方法 saveLoginStatus boolean状态，username用户名
+//                    Intent data = new Intent();    //登陆成功后进入主页
+//                    data.putExtra("isLogin",true);
+//                    setResult(RESULT_OK,data); //表示此页面下的内容操作成功将data返回到上一页面，如果时用back返回过去的则不存在用setResult传递data值
 //                    LoginActivity.this.finish();//跳转到主界面，登陆成功的状态传递到MainActivity中
-                    startActivity(new Intent(LoginActivity.this,MainActivity.class));
-                }else if (sppassword!= null && !TextUtils.isEmpty(sppassword) && !md5Paw.equals(sppassword)){
-                    Toast.makeText(LoginActivity.this, "输入的用户名和密码不一致", Toast.LENGTH_SHORT).show();
+                    if (ismanager.isChecked()) {
+                        startActivity(new Intent(LoginActivity.this, Main2Activity.class));
+
+                    } else {
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        intent.putExtra("extra_data", username);
+                        startActivity(intent);
+
+                    }
+//                }else if (sppassword!= null && !TextUtils.isEmpty(sppassword) && !md5Paw.equals(sppassword))
+                }else if (ps!=null &&!TextUtils.isEmpty(ps) && !password.equals(ps)){
+                                Toast.makeText(LoginActivity.this, "输入的用户名和密码不一致", Toast.LENGTH_SHORT).show();
                 }else {
                     Toast.makeText(LoginActivity.this, "此用户名不存在", Toast.LENGTH_SHORT).show();
                 }
@@ -76,21 +118,21 @@ public class LoginActivity extends AppCompatActivity {
     /**
      *从SharedPreferences中根据用户名读取密码
      */
-    private String ReadPassWord(String username){
-        SharedPreferences sharedPreferences = getSharedPreferences("loginInfo",MODE_PRIVATE); //MODE_PRIVATE表示可以继续写入
-        return sharedPreferences.getString(username,"");
-    }
+//    private String ReadPassWord(String username){
+//        SharedPreferences sharedPreferences = getSharedPreferences("loginInfo",MODE_PRIVATE); //MODE_PRIVATE表示可以继续写入
+//        return sharedPreferences.getString(username,"");
+//    }
 
     /**
      * 保存登陆状态和登陆用户名到SharedPreferences中
      */
-    private void saveLoginStatus(boolean status,String username){
-        SharedPreferences sharedPreferences = getSharedPreferences("loginInfo",MODE_PRIVATE); //loginInfo表示文件名
-        SharedPreferences.Editor editor = sharedPreferences.edit();      //获取编辑器
-        editor.putBoolean("isLogin",status);  //存入boolean类型的登陆状态
-        editor.putString("loginUserName",username);  // 存入登陆状态时的用户名
-        editor.apply();      //提交修改
-    }
+//    private void saveLoginStatus(boolean status,String username){
+//        SharedPreferences sharedPreferences = getSharedPreferences("loginInfo",MODE_PRIVATE); //loginInfo表示文件名
+//        SharedPreferences.Editor editor = sharedPreferences.edit();      //获取编辑器
+//        editor.putBoolean("isLogin",status);  //存入boolean类型的登陆状态
+//        editor.putString("loginUserName",username);  // 存入登陆状态时的用户名
+//        editor.apply();      //提交修改
+//    }
 
 
     /**
@@ -99,15 +141,15 @@ public class LoginActivity extends AppCompatActivity {
      * @param resultCode  结果码
      * @param data         数据
      */
-    protected void onActivityResult(int requestCode,int resultCode,Intent data){
-        super.onActivityResult(requestCode,resultCode,data);
-        if (data != null){
-
-            String username = data.getStringExtra("username"); //获取注册界面传过来的用户名
-            if (!TextUtils.isEmpty(username)){
-                username_et.setText(username);   //设置用户名到username_et控件
-                username_et.setSelection(username.length());  //username控件的setSelection方法来设置光标位置
-            }
-        }
-    }
+//    protected void onActivityResult(int requestCode,int resultCode,Intent data){
+//        super.onActivityResult(requestCode,resultCode,data);
+//        if (data != null){
+//
+//            String username = data.getStringExtra("username"); //获取注册界面传过来的用户名
+//            if (!TextUtils.isEmpty(username)){
+//                username_et.setText(username);   //设置用户名到username_et控件
+//                username_et.setSelection(username.length());  //username控件的setSelection方法来设置光标位置
+//            }
+//        }
+//    }
 }

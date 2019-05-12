@@ -14,20 +14,15 @@ import android.widget.Button;
 import android.widget.RadioGroup;
 
 
-public class MainActivity extends FragmentActivity {
+public class Main3Activity extends FragmentActivity {
 
-    private Button button01,button02,button03;
-    private ViewPager viewPager;
+    private Button button01,button02,button03;;
     private RadioGroup radioGroup;
-    public  static  String ina;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Intent intent = getIntent();
-        ina = intent.getStringExtra("extra_data");
+        setContentView(R.layout.activity_main3);
         initView();
         initFragment();
     }
@@ -36,7 +31,7 @@ public class MainActivity extends FragmentActivity {
 
         FragmentManager ft = getSupportFragmentManager();
         FragmentTransaction fm = ft.beginTransaction();
-        fm.replace(R.id.frame,new Fragment02());
+        fm.replace(R.id.frame,new Fragment04());
         fm.commit();
     }
 
@@ -50,24 +45,24 @@ public class MainActivity extends FragmentActivity {
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                    FragmentManager fm =getSupportFragmentManager();
-                    FragmentTransaction ft = fm.beginTransaction();
-                    initBtn();
-                    switch (checkedId){
-                        case R.id.button01:
-                            button01.setBackgroundColor(Color.parseColor("#2bccfc"));
-                            ft.replace(R.id.frame,new Fragment01());
-                            break;
-                        case R.id.button02:
-                            button02.setBackgroundColor(Color.parseColor("#2bccfc"));
-                            ft.replace(R.id.frame, new Fragment02());
-                            break;
-                        case R.id.button03:
-                            button03.setBackgroundColor(Color.parseColor("#2bccfc"));
-                            ft.replace(R.id.frame, new Fragment03());
-                            break;
-                    }
-                    ft.commit();
+                FragmentManager fm =getSupportFragmentManager();
+                FragmentTransaction ft = fm.beginTransaction();
+                initBtn();
+                switch (checkedId){
+                    case R.id.button01:
+                        button01.setBackgroundColor(Color.parseColor("#2bccfc"));
+                        ft.replace(R.id.frame,new Fragment04());
+                        break;
+                    case R.id.button02:
+                        button02.setBackgroundColor(Color.parseColor("#2bccfc"));
+                        ft.replace(R.id.frame, new Fragment05());
+                        break;
+                    case R.id.button03:
+                        button03.setBackgroundColor(Color.parseColor("#2bccfc"));
+                        ft.replace(R.id.frame, new Fragment06());
+                        break;
+                }
+                ft.commit();
             }
         });
     }

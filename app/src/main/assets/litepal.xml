@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<litepal>
+    <dbname value="Stadium"></dbname>
+
+    <version value="1"></version>
+
+    <list>
+        <mapping class="com.example.stadium.Custom"></mapping>
+        <mapping class="com.example.stadium.Sports"></mapping>
+        <mapping class="com.example.stadium.Manager"></mapping>
+        <mapping class="com.example.stadium.Subscribe"></mapping>
+    </list>
+</litepal>

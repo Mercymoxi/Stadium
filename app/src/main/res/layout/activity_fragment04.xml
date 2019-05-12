@@ -10,20 +10,38 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/frag03"
+            android:id="@+id/f01"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="#ff735c"
-            android:text="我的基本信息" />
+            android:text="查看场地" />
 
         <Button
-            android:id="@+id/frag04"
+            android:id="@+id/f02"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="#ffffff"
-            android:text="更改我的信息" />
+            android:text="添加场地" />
+
+        <Button
+            android:id="@+id/f03"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#ffffff"
+            android:text="修改场地" />
+
+        <Button
+            android:id="@+id/f04"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#ffffff"
+            android:text="删除场地" />
+
+
 
 
     </LinearLayout>

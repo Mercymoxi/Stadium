@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -17,12 +18,13 @@ public class RegisterActivity extends AppCompatActivity {
     private Button register_button;
     private String  username,password,confirmpassword;   //用户名，密码，确认密码控件的获取值
     private EditText username_et,password_et,confirmpassword_et;
+    private CheckBox checkBox;
 
 
     protected void onCreate(Bundle saveInstanceState){
         super.onCreate(saveInstanceState);
         setContentView(R.layout.activity_register);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+//        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         init();
     }
 
@@ -32,6 +34,7 @@ public class RegisterActivity extends AppCompatActivity {
         username_et = findViewById(R.id.username_et2);
         password_et=findViewById(R.id.password_et2);
         confirmpassword_et=findViewById(R.id.confirmpassword_et2);
+        checkBox = findViewById(R.id.c);
         register_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -46,15 +49,26 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.makeText(RegisterActivity.this, "请再次输入密码", Toast.LENGTH_SHORT).show();
                 }else if (!password.equals(confirmpassword)){
                     Toast.makeText(RegisterActivity.this, "两次输入的密码不一致", Toast.LENGTH_SHORT).show();
-                }else if (isExistUserName(username)){
-                    Toast.makeText(RegisterActivity.this, "此用户名已存在", Toast.LENGTH_SHORT).show();
+//                }else if (isExistUserName(username)){
+//                    Toast.makeText(RegisterActivity.this, "此用户名已存在", Toast.LENGTH_SHORT).show();
                 }
                 else{
                     Toast.makeText(RegisterActivity.this, "账号注册成功", Toast.LENGTH_SHORT).show();
-                    saveRegisterInfo(username,password);//把账号，密码和账号标识保存到sp里面
-                    Intent data = new Intent();
-                    data.putExtra("username",username);
-                    setResult(RESULT_OK,data);//RESULT_OK为Activity系统常量，状态码为-1.表示此页面下的内容操作成功将data返回到上一页面，如果是用back返回过去的则不存在用setResult传递data
+//                    saveRegisterInfo(username,password);//把账号，密码和账号标识保存到sp里面
+//                    Intent data = new Intent();
+//                    data.putExtra("username",username);
+                    if (checkBox.isChecked()){
+                        Manager manager = new Manager();
+                        manager.setManager_account(username);
+                        manager.setManager_ps(password);
+                        manager.save();
+                    }else {
+                        Custom custom = new Custom();
+                        custom.setAccount(username);
+                        custom.setPassword(password);
+                        custom.save();
+                    }
+//                    setResult(RESULT_OK,data);//RESULT_OK为Activity系统常量，状态码为-1.表示此页面下的内容操作成功将data返回到上一页面，如果是用back返回过去的则不存在用setResult传递data
                     RegisterActivity.this.finish();
                 }
             }
@@ -74,24 +88,24 @@ public class RegisterActivity extends AppCompatActivity {
     /**
      * 从SharedPreferences中读取输入的用户名，判断SharedPreferences中是否有此用户名
      */
-    private boolean isExistUserName(String username){
-        boolean has_username = false;
-        SharedPreferences sp = getSharedPreferences("loginInfo",MODE_PRIVATE);
-        String spPassword = sp.getString(username,""); //传入用户获取密码
-        if (!TextUtils.isEmpty(spPassword)){
-            has_username=true;
-        }//如果密码不为空就保存这个用户名
-        return has_username;
-    }
+//    private boolean isExistUserName(String username){
+//        boolean has_username = false;
+//        SharedPreferences sp = getSharedPreferences("loginInfo",MODE_PRIVATE);
+//        String spPassword = sp.getString(username,""); //传入用户获取密码
+//        if (!TextUtils.isEmpty(spPassword)){
+//            has_username=true;
+//        }//如果密码不为空就保存这个用户名
+//        return has_username;
+//    }
 
     /**
      * 保存账号和密码到SharedPreferences中
      */
-    private void saveRegisterInfo(String username,String password){
-        String md5Psw = MD5Utils.md5(password);    //用MD5加密
-        SharedPreferences sp = getSharedPreferences("loginInfo",MODE_PRIVATE); //loginInfo表示文件名
-        SharedPreferences.Editor editor = sp.edit();  //获取编辑器
-        editor.putString(username,md5Psw);  //以用户名为key，密码为value保存在SharedPreferences中，键值对
-        editor.apply();  //提交修改
-    }
+//    private void saveRegisterInfo(String username,String password){
+//        String md5Psw = MD5Utils.md5(password);    //用MD5加密
+//        SharedPreferences sp = getSharedPreferences("loginInfo",MODE_PRIVATE); //loginInfo表示文件名
+//        SharedPreferences.Editor editor = sp.edit();  //获取编辑器
+//        editor.putString(username,md5Psw);  //以用户名为key，密码为value保存在SharedPreferences中，键值对
+//        editor.apply();  //提交修改
+//    }
 }

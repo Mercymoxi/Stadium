@@ -41,6 +41,13 @@
             android:maxLength="20"
             android:hint="确认你的账号密码" />
 
+        <CheckBox
+            android:id="@+id/c"
+            android:text="管理员注册"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="125dp"/>
+
         <Button
             android:id="@+id/register_button2"
             android:layout_width="match_parent"

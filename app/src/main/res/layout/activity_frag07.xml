@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="400dp"
+    android:layout_height="match_parent"
+    android:filterTouchesWhenObscured="true">
+
+    <RelativeLayout
+        android:id="@+id/login_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="50dp"
+        android:gravity="center">
+
+
+        <EditText
+            android:id="@+id/et_aid"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:hint="请想要想要修改的运动类型的ID"
+            android:maxLength="20" />
+
+        <EditText
+            android:id="@+id/et_c"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:hint="请填入你想要修改的值"
+            android:maxLength="20" />
+
+
+        <Button
+            android:id="@+id/o_btna1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/password_et1"
+            android:layout_marginTop="150dp"
+            android:background="#ff336699"
+            android:gravity="center"
+            android:text="修改场地的总数"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/o_btna2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/password_et1"
+            android:layout_marginTop="210dp"
+            android:background="#ff336699"
+            android:gravity="center"
+            android:text="修改场地的租用单价"
+            android:textColor="@android:color/white" />
+
+
+    </RelativeLayout>
+</RelativeLayout>

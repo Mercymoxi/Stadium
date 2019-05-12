@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="400dp"
+    android:layout_height="match_parent"
+    android:filterTouchesWhenObscured="true">
+
+    <RelativeLayout
+        android:id="@+id/login_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="100dp"
+        android:gravity="center">
+
+        <EditText
+            android:id="@+id/et_1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:hint="请填入你的电话号码"
+            android:maxLength="20" />
+
+        <EditText
+            android:id="@+id/et_2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:hint="请填入你想租用的场地类型"
+            android:maxLength="20" />
+
+        <EditText
+            android:id="@+id/et_3"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="120dp"
+            android:hint="请输入租用场地的日期"
+            android:maxLength="20" />
+
+        <EditText
+            android:id="@+id/et_4"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="160dp"
+            android:hint="请输入租用场地预计使用时段"
+            android:maxLength="20" />
+
+
+
+        <Button
+            android:id="@+id/o_sbtn"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/password_et1"
+            android:layout_marginTop="220dp"
+            android:background="#ff336699"
+            android:gravity="center"
+            android:text="预约场地"
+            android:textColor="@android:color/white" />
+
+
+    </RelativeLayout>
+</RelativeLayout>

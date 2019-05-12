@@ -13,7 +13,7 @@ import android.widget.Button;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Fragment01 extends Fragment implements ViewPager.OnPageChangeListener,View.OnClickListener{
+public class Fragment06 extends Fragment implements ViewPager.OnPageChangeListener,View.OnClickListener{
 
     private List<Fragment> list;
     private View view;
@@ -22,7 +22,7 @@ public class Fragment01 extends Fragment implements ViewPager.OnPageChangeListen
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        view=inflater.inflate(R.layout.fragment01,container,false);
+        view=inflater.inflate(R.layout.activity_fragment06,container,false);
         initView();
         return view;
     }
@@ -38,14 +38,14 @@ public class Fragment01 extends Fragment implements ViewPager.OnPageChangeListen
 
         button01.setOnClickListener(this);
         button02.setOnClickListener(this);
-        button03.setOnClickListener(this);;
-        button04.setOnClickListener(this);;
+        button03.setOnClickListener(this);
+        button04.setOnClickListener(this);
 
         //这些界面要也要一个一个先去实现
-        list.add(new Csq());
-        list.add(new Csa());
-        list.add(new Csm());
-        list.add(new Csd());
+        list.add(new Cusmanq());
+        list.add(new Cusmanm());
+        list.add(new Cusmana());
+        list.add(new Cusmand());
 
 
         viewPager.setAdapter(new FragmentAdapter(getChildFragmentManager(),list));

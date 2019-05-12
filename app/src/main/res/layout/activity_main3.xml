@@ -31,7 +31,7 @@
                 android:background="#2bccfc"
                 android:button="@null"
                 android:gravity="center"
-                android:text="场地预约下单" />
+                android:text="运动场地管理" />
 
             <RadioButton
                 android:id="@+id/button02"
@@ -40,7 +40,7 @@
                 android:layout_weight="1"
                 android:button="@null"
                 android:gravity="center"
-                android:text="体育场馆介绍及最新通告" />
+                android:text="用户订单管理" />
 
             <RadioButton
                 android:id="@+id/button03"
@@ -49,7 +49,7 @@
                 android:layout_weight="1"
                 android:button="@null"
                 android:gravity="center"
-                android:text="我的" />
+                android:text="用户信息管理" />
         </RadioGroup>
     </RelativeLayout>
 

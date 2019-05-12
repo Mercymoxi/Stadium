@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="400dp"
+    android:layout_height="match_parent"
+    android:filterTouchesWhenObscured="true">
+
+    <RelativeLayout
+        android:id="@+id/login_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="50dp"
+        android:gravity="center">
+
+
+        <EditText
+            android:id="@+id/et_deletes"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:hint="请想要想要删除的运动场地的ID"
+            android:maxLength="20" />
+
+
+        <Button
+            android:id="@+id/o_btn1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/password_et1"
+            android:layout_marginTop="150dp"
+            android:background="#ff336699"
+            android:gravity="center"
+            android:text="确定删除一类场地信息"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/o_btn2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/password_et1"
+            android:layout_marginTop="210dp"
+            android:background="#ff336699"
+            android:gravity="center"
+            android:text="删除所有场地信息"
+            android:textColor="@android:color/white" />
+
+
+    </RelativeLayout>
+</RelativeLayout>

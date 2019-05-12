@@ -14,42 +14,47 @@ import org.litepal.crud.DataSupport;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Frag03 extends Fragment03{
+public class Cusmanq extends Fragment06{
 
     private View view;
-    private  int i;
-    private String  an,as,ac,at;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
 
-        view = inflater.inflate(R.layout.activity_frag03, container, false);
+        view = inflater.inflate(R.layout.activity_cusmanq, container, false);
 
-        List<Custom> customList = DataSupport.select("id").where("account = ?",MainActivity.ina).find(Custom.class);
-        i = customList.get(0).getId();
-        Custom custom =DataSupport.find(Custom.class,i);
-        an = custom.getName();
-        ac = custom.getAccount();
-        as = custom.getSex();
-        at = custom.getTelephone();
-
+        List<Custom> account = DataSupport.select("account").find(Custom.class);
+        List<Custom> name = DataSupport.select("name").find(Custom.class);
+        List<Custom> id = DataSupport.select("id").find(Custom.class);
+        List<Custom> tel = DataSupport.select("telephone").find(Custom.class);
 
         List<String> acList = new ArrayList<>();
         List<String> nameList = new ArrayList<>();
-        List<String> idList = new ArrayList<>();
+        List<Integer> idList = new ArrayList<>();
         List<String> telList = new ArrayList<>();
 
+        for (Custom custom : account) {
+            String a = custom.getAccount();
+            acList.add(a);
+        }
 
-            acList.add(ac);
-            nameList.add(an);
-            idList.add(as);
-            telList.add(at);
-
+        for (Custom custom : name) {
+            String a = custom.getName();
+            nameList.add(a);
+        }
+        for (Custom custom : id) {
+            int a = custom.getId();
+            idList.add(a);
+        }
+        for (Custom custom : tel) {
+            String a = custom.getTelephone();
+            telList.add(a);
+        }
 
 
         ArrayAdapter<String> adapter_account = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, acList);
         ArrayAdapter<String> adapter_name = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, nameList);
-        ArrayAdapter<String> adaptersex = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, idList);
+        ArrayAdapter<Integer> adaptersex = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, idList);
         ArrayAdapter<String> adapter_tel = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, telList);
         ListView date_lv = (ListView) view.findViewById(R.id.account);
         date_lv.setAdapter(adapter_account);

@@ -4,30 +4,22 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="欢迎使用公共体育馆管理app,体育馆营业时间，早8点到晚8点！"/>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="1dp"
         android:background="@android:color/white"
         android:baselineAligned="false"
         android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingBottom="5dp"
-        android:paddingTop="5dp">
+        android:orientation="horizontal">
 
-        <!--detail Tab-->
         <TextView
             android:id="@+id/sportkind"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center_horizontal|center_vertical"
-            android:text="运动项目"
+            android:text="订单号"
             android:textSize="10sp"/>
 
         <TextView
@@ -36,7 +28,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center_horizontal|center_vertical"
-            android:text="场地单价 元/小时"
+            android:text="运动场地类型"
             android:textSize="10sp"/>
 
         <TextView
@@ -45,7 +37,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center_horizontal|center_vertical"
-            android:text="场地总数"
+            android:text="预约日期"
             android:textSize="10sp"/>
 
         <!--category report Tab-->
@@ -55,8 +47,10 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center_horizontal|center_vertical"
-            android:text="剩余场地数"
+            android:text="预约时间"
             android:textSize="10sp"/>
+
+
     </LinearLayout>
 
     <LinearLayout
@@ -65,13 +59,7 @@
         android:layout_marginTop="0dp">
 
         <ListView
-            android:id="@+id/sname"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"></ListView>
-
-        <ListView
-            android:id="@+id/sprice"
+            android:id="@+id/slnum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"></ListView>
@@ -83,7 +71,13 @@
             android:layout_weight="1"></ListView>
 
         <ListView
-            android:id="@+id/slnum"
+            android:id="@+id/sname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"></ListView>
+
+        <ListView
+            android:id="@+id/sprice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"></ListView>
